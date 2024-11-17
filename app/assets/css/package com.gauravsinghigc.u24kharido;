@@ -1,0 +1,200 @@
+package com.gauravsinghigc.u24kharido;
+
+import android.annotation.SuppressLint;
+import android.app.AppComponentFactory;
+import android.app.ProgressDialog;
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.net.Uri;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
+import android.webkit.CookieManager;
+import android.webkit.WebChromeClient;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
+import android.widget.Button;
+import android.widget.ProgressBar;
+import android.widget.RelativeLayout;
+
+
+import androidx.annotation.NonNull;
+
+public class StartAppActivity {
+    WebView webView;
+    private String webUrl = "http://24kharido.in/app";
+    ProgressBar progressBarWeb;
+    ProgressDialog progressDialog;
+    RelativeLayout relativeLayout;
+    Button btnNoInternetConnection;
+    private Object Prefs;
+
+
+    @SuppressLint("SetJavaScriptEnabled")
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        webView = findViewById(R.id.myWebView);
+        progressBarWeb = findViewById(R.id.prograssbar);
+        progressDialog = new ProgressDialog(this);
+        progressDialog.setMessage("");
+        WebSettings webSettings = webView.getSettings();
+        webSettings.setJavaScriptEnabled(true);
+        webSettings.setUseWideViewPort(true);
+        webSettings.getAllowFileAccess();
+        webSettings.getAllowUniversalAccessFromFileURLs();
+        webSettings.setAppCachePath(getApplicationContext().getFilesDir().getAbsolutePath() + "/cache");
+        webSettings.setDatabasePath(getApplicationContext().getFilesDir().getAbsolutePath() + "/databases");
+        webSettings.setDomStorageEnabled(true);
+        webSettings.setSavePassword(true);
+        webSettings.setMediaPlaybackRequiresUserGesture(true);
+
+        CookieManager.setAcceptFileSchemeCookies(true);
+        CookieManager.getInstance().acceptThirdPartyCookies(webView);
+        CookieManager cookieManager = CookieManager.getInstance();
+        cookieManager.setAcceptCookie(true);
+
+        btnNoInternetConnection = findViewById(R.id.noConnectionBtn);
+        relativeLayout = findViewById(R.id.relativeLayout);
+
+        CheckConnection();
+
+        webView.setWebViewClient(new WebViewClient() {
+            public boolean shouldOverrideUrlLoading(WebView view, String webUrl) {
+                if (webUrl.startsWith("http://") || (webUrl.startsWith("https://"))) {
+                    webView.loadUrl(webUrl);
+                } else if (webUrl.startsWith("tel:")) {
+                    Intent intent = new Intent(Intent.ACTION_VIEW);
+                    intent.setData(Uri.parse(webUrl));
+                    startActivity(intent);
+                    return true;
+                } else if (webUrl.startsWith("url:")){
+                    Uri OpenBrowser = Uri.parse("https://24kharido.in");
+                    Intent launchBrowser = new Intent(Intent.ACTION_VIEW, OpenBrowser);
+                    startActivity(launchBrowser);
+                    return true;
+                } else if(webUrl.startsWith("whatsapp:")) {
+                    Intent sendIntent = new Intent("android.intent.action.MAIN");
+                    sendIntent.setComponent(new ComponentName("com.whatsapp", "com.whatsapp.Conversation"));
+                    sendIntent.setAction(Intent.ACTION_SEND);
+                    sendIntent.setType("text/plain");
+                    sendIntent.putExtra(Intent.EXTRA_TEXT,"");
+                    sendIntent.putExtra("jid", "919871620117" +"@s.whatsapp.net");
+                    sendIntent.setPackage("com.whatsapp");
+                    startActivity(sendIntent);
+                } else if(webUrl.startsWith("share:")){
+                    Intent sendIntent = new Intent();
+                    sendIntent.setAction(Intent.ACTION_SEND);
+                    sendIntent.putExtra(Intent.EXTRA_TEXT, "Download 24Kharido APP and Get your order within 24hr. You can also create your custom order for favourite products from favourite stores. At 24kharido.in, customers buy/sell everything of their choice and requirements. They don’t need to leave their homes, comfort and safety. 24kharido.in delivering your order to its destination locally within 24 hours.\n" +
+                            "At 24kharido.in, Customers create their own orders too, named as Custom Orders. For Custom Orders, customers have to fill in product details, store information (Optional), Approx price of that item (Optional). When Custom Orders are placed, they get a call from 24Kharido.in for your order and price confirmation. After confirmation we will deliver it within 24 Hours.\n" +
+                            "At 24kharido.in, customers sell their old and used items, products, electronics, and many more items. They don’t need to contact the customer (Buyer of used time) we make deals for you and pick posted item from your home and deliver it to buyer within 24hrs. Amounts will be transferred via Paytm, Google Pay, Phonepay, Amazon Pay, UPI and Direct Bank Transfer to customer accounts after delivery means within in 24hours.\n" +
+                            "At 24kharido.in, customers pay their bills, recharge, buy life/automobile insurances, and do many more exciting things.   to know more...https://bit.ly/34h2h11");
+                    sendIntent.setType("text/plain");
+                    startActivity(sendIntent);
+                } else if(webUrl.startsWith("mailto:")){
+                    Intent emailintent = new Intent();
+                    emailintent.setType("message/rfc822");
+                    emailintent.setAction(Intent.ACTION_SEND);
+                    emailintent.putExtra(Intent.EXTRA_EMAIL, new String[]{emailintent.getType()});
+                    emailintent.setType("text/plain");
+                    getBaseContext().startActivity(emailintent);
+                }
+                return true;
+            }
+        });
+
+        webView.setWebChromeClient(new WebChromeClient() {
+
+            @Override
+            public void onProgressChanged(WebView view, int newProgress){
+                progressBarWeb.setVisibility(View.VISIBLE);
+                progressBarWeb.setProgress(newProgress);
+
+                if (newProgress == 100){
+                    progressBarWeb.setVisibility(View.GONE);
+                    setTitle(view.getTitle());
+                    progressDialog.dismiss();
+                }
+                super.onProgressChanged(view, newProgress);
+            }
+
+        });
+
+        btnNoInternetConnection.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                CheckConnection();
+                webView.loadUrl(webUrl);
+            }
+        });
+
+    }
+    @Override
+    public void onBackPressed(){
+        if(webView.canGoBack()){
+            webView.goBack();
+        }
+        else
+            super.onBackPressed();
+    }
+
+    public void CheckConnection(){
+        ConnectivityManager connectivityManager = (ConnectivityManager)
+                this.getSystemService(Context.CONNECTIVITY_SERVICE);
+        assert connectivityManager != null;
+        NetworkInfo wifi = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+        NetworkInfo mobileNetwork = connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+
+        assert wifi != null;
+        if (wifi.isConnected()){
+            webView.loadUrl(webUrl);
+            setTitle("No Internet");
+            webView.setVisibility(View.VISIBLE);
+            relativeLayout.setVisibility(View.GONE);
+        }
+        else {
+            assert mobileNetwork != null;
+            if (mobileNetwork.isConnected()){
+                webView.loadUrl(webUrl);
+                setTitle("No Internet");
+                webView.setVisibility(View.VISIBLE);
+                relativeLayout.setVisibility(View.GONE);
+            }
+            else {
+                webView.setVisibility(View.GONE);
+                relativeLayout.setVisibility(View.VISIBLE);
+            }
+        }
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch(item.getItemId()){
+            case R.id.nav_previous:
+                onBackPressed();
+                break;
+            case R.id.nav_next:
+                if (webView.canGoForward()){
+                    webView.goForward();
+                }
+                break;
+            case R.id.nav_reload:
+                CheckConnection();
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+}

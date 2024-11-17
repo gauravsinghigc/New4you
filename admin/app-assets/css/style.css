@@ -1,0 +1,385 @@
+/*================================================================================
+	Item Name: Stack - Responsive Admin Theme
+	Author: PIXINVENT
+	Author URL: http://www.themeforest.net/user/pixinvent
+================================================================================
+
+NOTE:
+------
+PLACE HERE YOUR OWN SCSS CODES AND IF NEEDED, OVERRIDE THE STYLES FROM THE OTHER STYLESHEETS.
+WE WILL RELEASE FUTURE UPDATES SO IN ORDER TO NOT OVERWRITE YOUR STYLES IT'S BETTER LIKE THIS.  */
+
+@import url('https://fonts.googleapis.com/css2?family=Commissioner&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Rubik&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Heebo:wght@389&display=swap');
+@import url('rubik.css?family=Rubik&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Nunito&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Oswald&family=Poppins&display=swap');
+html,
+body {
+    font-family: system-ui !important;
+    font-size: 14px !important;
+}
+
+thead tr th {
+    font-weight: 600 !important;
+}
+
+a {
+    text-decoration: none !important;
+    font-size: 14px !important;
+}
+
+a:hover {
+    text-decoration: underline rgb(70, 174, 243) !important;
+    font-weight: 500 !important;
+}
+
+form {
+    margin-bottom: 2% !important;
+}
+
+button,
+.btn {
+    border-radius: 2px;
+    font-size: 12px !important;
+}
+
+.form-control {
+    padding: 0.5rem 0.3rem !important;
+    height: auto !important;
+    font-size: 0.9rem !important;
+}
+
+label {
+    color: grey !important;
+    margin-bottom: 0px !important;
+}
+
+.users-action a {
+    font-size: 14px !important;
+    margin: 0.6%;
+    padding: 0.6%;
+    display: inline-block !important;
+    box-shadow: 0px 0px 2px black;
+    padding-left: 1%;
+    padding-right: 1%;
+    border-radius: 20px;
+}
+
+.users-action a:hover {
+    background-color: #418047;
+    color: white !important;
+}
+
+.action-view {
+    font-size: 13px !important;
+    margin: 0.8%;
+    padding: 3.5%;
+    display: inline-block !important;
+    box-shadow: 0px 0px 2px black;
+    padding-left: 11%;
+    padding-right: 11%;
+    border-radius: 25px !important;
+}
+
+.action-view:hover {
+    background-color: #418047;
+    color: white !important;
+}
+
+.circle-wrap {
+    margin: auto;
+    width: 200px;
+    height: 200px;
+    background: #e6e2e7;
+    border-radius: 50%;
+}
+
+.circle-wrap .circle .mask,
+.circle-wrap .circle .fill {
+    width: 200px;
+    height: 200px;
+    position: absolute;
+    border-radius: 50%;
+}
+
+.circle-wrap .circle .mask {
+    clip: rect(120px, 150px, 150px, 75px);
+}
+
+.circle-wrap .circle .mask .fill {
+    clip: rect(120px, 75px, 150px, 0px);
+    background-color: #9e00b1;
+}
+
+.circle-wrap .circle .mask.full,
+.circle-wrap .circle .fill {
+    animation: fill ease-in-out 3s;
+    transform: rotate(126deg);
+}
+
+@keyframes fill {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(126deg);
+    }
+}
+
+.circle-wrap .inside-circle {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    background: #fff;
+    line-height: 180px;
+    text-align: center;
+    margin-top: 10px;
+    margin-left: 10px;
+    position: absolute;
+    z-index: 100;
+    font-weight: 700;
+    font-size: 2em;
+}
+
+.vertical .progress-bar {
+    float: left;
+    height: 250px;
+    width: 30px;
+    margin-right: 6%;
+}
+
+.vertical .progress-track {
+    position: relative;
+    width: 30px;
+    height: 100%;
+    background: #fff;
+    border: 1px solid #ebebeb;
+}
+
+.vertical .progress-fill {
+    position: relative;
+    height: 50%;
+    width: 30px;
+    color: rgb(140, 60, 214);
+    text-align: center;
+}
+
+.vertical-call .progress-bar-call {
+    float: left;
+    height: 60px;
+    width: 5px;
+    margin-right: 1%;
+}
+
+.vertical-call .progress-track-call {
+    position: relative;
+    width: 5px;
+    height: 100%;
+    background: #fff;
+    border: 1px solid #ebebeb;
+}
+
+.vertical-call .progress-fill-call {
+    position: relative;
+    height: 50%;
+    width: 5px;
+    color: rgb(140, 60, 214);
+    text-align: center;
+}
+
+@media only screen and (max-width: 600px) {
+    .mobile-font-size {
+        font-size: 13px;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    .mobile-cat-img {
+        display: none;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .mobile-cat-link {
+        display: none;
+    }
+}
+
+.autocomplete {
+    /*the container must be positioned relative:*/
+    position: relative;
+    display: inline-block;
+}
+
+input {
+    border: 1px solid transparent;
+    padding: 10px;
+    font-size: 16px;
+    border-radius: 2px !important;
+}
+
+input[type=text] {
+    width: 100%;
+}
+
+input[type=submit] {
+    color: black;
+}
+
+.autocomplete-items {
+    position: absolute;
+    border-bottom: none;
+    border-top: 1px solid #d4d4d4;
+    z-index: 99;
+    /*position the autocomplete items to be the same width as the container:*/
+    top: 100%;
+    left: 0;
+    right: 0;
+    background-color: white !important;
+    margin-left: 1.5%;
+    border-radius: 1px;
+}
+
+.autocomplete-items div {
+    padding: 10px;
+    cursor: pointer;
+    border-top: 1px solid #d4d4d4;
+    border-radius: 1px;
+    background-color: #e4f0ff !important;
+}
+
+.autocomplete-items div:hover {
+    /*when hovering an item:*/
+    background-color: #00B5B8 !important;
+    color: white !important;
+}
+
+.autocomplete-active {
+    /*when navigating through the items using the arrow keys:*/
+    color: black;
+    background-color: #00B5B8 !important;
+}
+
+.form-control {
+    border-radius: 1px !important;
+}
+
+.uppercase {
+    text-transform: uppercase !important;
+}
+
+.d-input {
+    height: auto !important;
+    padding: 1% !important;
+}
+
+select.form-control {
+    padding-top: 2% !important;
+    padding-bottom: 2% !important;
+}
+
+body.vertical-layout.vertical-menu-modern.menu-expanded .main-menu .navigation li.has-sub>a:not(.mm-next):after {
+    content: "\f105";
+    font-family: 'FontAwesome';
+    display: inline-block;
+    position: absolute;
+    right: 10px !important;
+    font-size: 13px !important;
+    top: 4px;
+    transform: rotate(0deg) !important;
+    transition: -webkit-transform 0.2s ease-in-out !important;
+}
+
+#loader {
+    border: 10px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 10px solid #3168ae !important;
+    width: 70px;
+    height: 70px;
+    animation: spin 1s linear infinite;
+    z-index: 100000000000000000;
+}
+
+@keyframes spin {
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.center {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+}
+
+table tr th,
+td {
+    padding: 0.1% !important;
+    font-size: 13px !important;
+}
+
+.circle {
+    border-radius: 50%;
+    width: 34px;
+    height: 34px;
+    padding: 10px;
+    background: #fff;
+    border: 3px solid #000;
+    color: #000;
+    text-align: center;
+    font-size: 32px;
+}
+
+.customers-orders table div.dataTables_wrapper div.col-sm-12 .col-md-6 {
+    padding-left: 1px !important;
+    padding-right: 1px !important;
+}
+
+.table-responsive table tbody tr:hover,
+table tbody tr td a:hover {
+    background-color: rgb(240, 240, 240) !important;
+}
+
+.switchery .switchery-xsmall .switchery-default {
+    margin-top: 0px !important
+}
+
+.dataTables_filter select.custom-select,
+select.custom-select-sm,
+select.form-control select.form-control-sm {
+    font-size: 12.5px !important;
+}
+
+.dataTables_filter {
+    width: 100% !important;
+}
+
+.dataTables_filter label {
+    width: 100% !important;
+}
+
+.dataTables_filter input.form-control .form-control-sm {
+    width: 100% !important;
+}
+
+.btn-group-sm>.btn,
+.btn-sm {
+    padding: .15rem .3rem !important;
+}
+
+.round {
+    border-radius: 50px !important;
+    -webkit-border-radius: 50px !important;
+    -moz-border-radius: 50px !important;
+    -ms-border-radius: 50px !important;
+    -o-border-radius: 50px !important;
+}
+
+.w-20 {
+    width: 20px !important;
+}

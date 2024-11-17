@@ -1,0 +1,215 @@
+@import url('https://fonts.googleapis.com/css2?family=Sarabun:wght@200&display=swap');
+html,
+body,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+span,
+div,
+section,
+table,
+ul,
+li,
+a,
+table,
+tr,
+td,
+tr,
+th {
+    font-family: 'Sarabun', sans-serif !important;
+    background-image: linear-gradient( to right bottom, #caeff7, #1bff0029) !important;
+    letter-spacing: 0px !important;
+}
+
+a {
+    text-decoration: none !important;
+}
+
+.container-fluid {
+    padding-left: 1% !important;
+    padding-right: 1% !important;
+}
+
+.logo-24kharido {
+    background-color: white;
+    padding: 2%;
+    border-radius: 500px;
+    width: 250px !important;
+}
+
+.w-30 {
+    width: 30% !important;
+}
+
+.navbar-nav {
+    margin-right: 0px !important;
+}
+
+ul.navbar-nav .nav-item {
+    margin-left: 2% i !important;
+}
+
+.nav-link {
+    color: white !important;
+    font-weight: 600 !important;
+}
+
+.nav-link:hover {
+    box-shadow: 0px 1px 1px 0px white;
+    border-radius: 50px;
+}
+
+.download-btn {
+    background-color: #caeff7;
+    color: black !important;
+    border-radius: 50px;
+    font-size: 18px !important;
+}
+
+.download-btn:hove {
+    box-shadow: none !important;
+    color: black !important;
+}
+
+@media all and (min-width: 992px) {
+    .navbar .nav-item .dropdown-menu {
+        display: none;
+    }
+    .navbar .nav-item:hover .nav-link {
+        color: #fff;
+    }
+    .navbar .nav-item:hover .dropdown-menu {
+        display: block;
+    }
+    .navbar .nav-item .dropdown-menu {
+        margin-top: 0;
+    }
+}
+
+.text-justify {
+    text-align: justify !important;
+}
+
+.app-img {
+    float: right !important;
+    width: 34% !important;
+}
+
+.rations-img {
+    border-radius: 30px !important;
+    -webkit-border-radius: 30px !important;
+    -moz-border-radius: 30px !important;
+    -ms-border-radius: 30px !important;
+    -o-border-radius: 30px !important;
+}
+
+.circle {
+    border-radius: 500px !important;
+    -webkit-border-radius: 500px !important;
+    -moz-border-radius: 500px !important;
+    -ms-border-radius: 500px !important;
+    -o-border-radius: 500px !important;
+}
+
+.mission {
+    font-size: 27px !important;
+    font-family: cursive !important;
+}
+
+.circle-2 {
+    border-radius: 15px !important;
+    -webkit-border-radius: 15px !important;
+    -moz-border-radius: 15px !important;
+    -ms-border-radius: 15px !important;
+    -o-border-radius: 15px !important;
+}
+
+.bg-light {
+    background-color: #f5f6f7 !important;
+}
+
+ul.footer-menu {
+    list-style-type: none;
+    margin-left: -7.5%;
+}
+
+ul.footer-menu li {
+    color: black !important;
+    background-color: white !important;
+    padding: 1.5% !important;
+    width: 100% !important;
+    border-radius: 15px;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    -ms-border-radius: 15px;
+    -o-border-radius: 15px;
+    padding-left: 2.5%;
+    margin-top: 1% !important;
+}
+
+ul.footer-menu li a {
+    margin-left: 2% !important;
+    color: rgb(18, 133, 241);
+}
+
+ul.footer-menu li a:hover {
+    margin-left: 2% !important;
+    color: rgb(18, 241, 118);
+}
+
+i.fa-angle-right {
+    font-size: 22px !important;
+    float: right !important;
+    margin-right: 2%;
+}
+
+ul.social-menu {
+    list-style-type: none !important;
+    display: inline !important;
+}
+
+ul ul.social-menu li {
+    width: auto !important;
+}
+
+a.social {
+    font-size: 30px !important;
+    margin: 2% !important;
+}
+
+.facebook {
+    color: #097adc !important;
+}
+
+.instagram {
+    color: #ff04d5 !important;
+}
+
+.linkedin {
+    color: rgb(47, 178, 230) !important;
+}
+
+.medium {
+    color: rgb(16, 223, 171) !important;
+}
+
+.play-store {
+    color: rgb(213, 255, 164) !important;
+}
+
+.top-links2 li a {
+    font-size: 0.6rem !important;
+}
+
+.top-links2 li {
+    margin-left: 0px !important;
+}
+
+.header-nav2 {
+    width: 100%;
+    overflow-x: scroll;
+}
